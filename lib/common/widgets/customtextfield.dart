@@ -39,6 +39,9 @@ class CustomTextFieldState extends ConsumerState<CustomTextField> {
               obscureText: widget.isPassword ? !widget.showPassword : false,
               controller: widget.controller,
               style: TextStyle(color: Colors.black),
+              onTapOutside: (event) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
               decoration: InputDecoration(
                   suffixIcon: widget.isPassword
                       ? GestureDetector(
