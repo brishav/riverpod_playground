@@ -1,0 +1,58 @@
+name: riverpod_playground
+description: "A new Flutter project."
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.3
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  intl: ^0.20.0
+  dio: ^5.7.0
+  awesome_dio_interceptor: ^1.3.0
+  url_launcher: ^6.3.1
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  go_router: ^14.6.0
+  path_provider: ^2.1.5
+
+dev_dependencies:
+  flutter_launcher_icons: "^0.10.0"
+  change_app_package_name:
+  flutter_test:
+    sdk: flutter
+
+  #flutter pub run flutter_launcher_icons:main
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/ios_app_icon.png"
+  adaptive_icon_background: "#E72A2A"
+  adaptive_icon_foreground: "assets/icons/app_icon.jpg"
+  min_sdk_android: 24
+
+flutter:
+
+  uses-material-design: true
+
+  fonts:
+    - family: GoogleSans
+      fonts:
+        - asset: assets/fonts/google_sans.ttf
+          style: normal
+        - asset: assets/fonts/google_sans_thin.ttf
+          weight: 100
+        - asset: assets/fonts/google_sans_bold.ttf
+          weight: 700
+
+  assets:
+    - assets/icons/
+    - assets/images/
+    - assets/fonts/
+    - assets/raw/
