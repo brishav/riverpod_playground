@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:riverpod_playground/globals.dart';
 import 'package:riverpod_playground/theme/app_colors.dart';
+import 'package:riverpod_playground/ui/login/loginscreen.dart';
 
 class SplashScreen extends ConsumerStatefulWidget {
   static var routeName = "/";
@@ -13,14 +15,18 @@ class SplashScreen extends ConsumerStatefulWidget {
 }
 
 class SplashScreenState extends ConsumerState<SplashScreen> {
-
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      Timer(Duration(seconds: splashTimer), () {
-
-      },);
-    },);
+    WidgetsBinding.instance.addPostFrameCallback(
+      (timeStamp) {
+        Timer(
+          Duration(seconds: splashTimer),
+          () {
+            context.go(LoginScreen.routeName);
+          },
+        );
+      },
+    );
     super.initState();
   }
 
