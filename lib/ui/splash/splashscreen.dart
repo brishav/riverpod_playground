@@ -37,8 +37,8 @@ class SplashScreenState extends ConsumerState<SplashScreen> {
       body: Center(
         child: Image.asset(
           appLogo,
-          width: 150,
-          height: 150,
+          width: 120,
+          height: 120,
         ),
       ),
     );

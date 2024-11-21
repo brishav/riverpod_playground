@@ -2,37 +2,62 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_playground/theme/app_colors.dart';
 
-class CustomTextField extends ConsumerWidget {
-  String title;
-  String hintTitle;
-  TextEditingController controller;
-  bool isPassword;
+class CustomTextField extends ConsumerStatefulWidget {
+  final String title;
+  final String hintTitle;
+  final TextEditingController controller;
+  final TextInputType inputType;
+  final bool isPassword;
+  bool showPassword = false;
 
-  CustomTextField(this.hintTitle, this.controller, {this.title = "",this.isPassword = false});
+  CustomTextField(this.hintTitle, this.controller,
+      {this.title = "",
+      this.isPassword = false,
+      this.inputType = TextInputType.text});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => CustomTextFieldState();
+}
+
+class CustomTextFieldState extends ConsumerState<CustomTextField> {
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: Text(
-            title,
-            style: TextStyle(color: Colors.black, fontSize: 15),
+            widget.title,
+            style: TextStyle(color: AppColors.secondaryColor, fontSize: 15,fontWeight: FontWeight.bold),
           ),
         ),
         Container(
           margin: const EdgeInsets.only(bottom: 8.0),
           child: TextFormField(
-            obscureText: isPassword,
-              controller: controller,
+              keyboardType: widget.inputType,
+              obscureText: widget.isPassword ? !widget.showPassword : false,
+              controller: widget.controller,
               style: TextStyle(color: Colors.black),
               decoration: InputDecoration(
+                  suffixIcon: widget.isPassword
+                      ? GestureDetector(
+                          onTap: () {
+                            widget.showPassword = !widget.showPassword;
+                            setState(() {});
+                          },
+                          child: Icon(
+                            widget.showPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: Colors.black,
+                          ),
+                        )
+                      : null,
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                  hintText: hintTitle,
-                  fillColor: Colors.black.withOpacity(.05),
+                  hintText: widget.hintTitle,
+                  fillColor: AppColors.secondaryColor.withOpacity(0.1),
                   filled: true,
                   hintStyle: TextStyle(
                       color: AppColors.secondaryTextColor, fontSize: 15),
